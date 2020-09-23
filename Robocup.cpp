@@ -59,9 +59,9 @@ void message_manager::message_print()
                     << container[2] << ", Dischng是" << container[3] << "Dirchng是" << container[4]
                             << "它的BodyDir是 " << container[5] << "，HeadDir是 " << container[6];
         }
-        if (*itt.find("goal Side") != -1)
+        if (*itt.find("goal") != -1)
         {
-            
+            cout << container[1]
         }
         if (*itt.find("f ") != -1)
         {
