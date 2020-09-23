@@ -14,9 +14,8 @@ private:
     string message;
     vector<string> HEAR;              //经过处理后的消息分段存入vector中
 	vector<string> SEE;
-    vector<string> objlnfos;
+    vector<string> objlnfos;          
     
-    /* data */
 public:
     message_manager(string message);
     ~message_manager();
@@ -33,21 +32,36 @@ void message_manager::message_print()
     vector<string>::iterator itt = SEE.begin()-2;
     while (itt != SEE.end())
     {
-        vector<string> temp;
-        int index = 0;
-        while ()
-        while (temp[index] != '(')
+        vector<string> container;
+        container.push_back(*itt.)
+
+        int index = *itt.find(")");
+        while (index < *itt.size())
+        {
+            string temp;
+            while (*itt[index] != ' '&&*itt[index] != '('&&itt[index] != ')'&&index < *itt.size())
+            {
+                temp.append(*itt[index]);
+                index++;
+            }
+            container.push_back(temp);
+            index++;
+        }
+
         if (*itt.find("ball") != -1)
         {
-            cout << " Ball 距离我的距离是 " << *itt.substr(*itt.find("ball"))
+            cout << " Ball 距离我的Direction是 " << container[1] << ", Distance是" << container[2] 
+                    << ", Distchng是" << container[3] << ", Dirchng是" << container[4]; 
         }
         if (*itt.find("player") != -1)
         {
-
+            cout << container[0] << "距离我的Direction是 " << container[1] << ", Distance是" 
+                    << container[2] << ", Dischng是" << container[3] << "Dirchng是" << container[4]
+                            << "它的BodyDir是 " << container[5] << "，HeadDir是 " << container[6];
         }
         if (*itt.find("goal Side") != -1)
         {
-
+            
         }
         if (*itt.find("f ") != -1)
         {
