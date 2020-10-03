@@ -91,22 +91,31 @@ int intersection_line(const line & FirstLine, const line & SecondLine, point &t)
 
 line & line::operator = (const line & l)
 {
-	A = l.A;
-	B = l.B;
-	C = l.C;
+		A = l.A;
+		B = l.B;
+		C = l.C;
 }
 
 line::line()
 {
 };
 
-line::line(double AValue, double BValue, double CValue):A(AValue),B(BValue),C(CValue)
-{
-};
+line::line(double AValue, double BValue, double CValue)
+{	if (A == 0&&B == 0)
+	{
+		cout << "This line don't exit!";
+	}
+	else
+	{
+		A = AValue;
+		B = BValue;
+		C = CValue;
+	}
+}
 
 line::~line()
 {
-};
+}
 
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -125,6 +134,9 @@ public:
 	rectangle(point l,point r);
 	rectangle(double xL, double yL, double xR, double yR);
 	~rectangle();
+	
+	inline void print()
+	{cout<<"lower left quarter";lLim.print();cout<<"Upper right corner";rLim.print();}
 	
 	int intersection_rectangle(const line & line, point &p1, point &p2);
 };
@@ -233,8 +245,8 @@ int rectangle::intersection_rectangle(const line & line, point &p1, point &p2)
 		j++;
 		m++;
 	}
-	
-	if (t[2].x >= lLim.x && t[2].y <= rLim.x)
+
+	if (t[2].x > lLim.x && t[2].x < rLim.x)
 	{
 		
 		if (j == 0)
@@ -248,9 +260,9 @@ int rectangle::intersection_rectangle(const line & line, point &p1, point &p2)
 		j++;
 		m++;
 	}
-	
-	if (t[3].x >= lLim.x && t[3].x <= rLim.x)
-	{
+
+	if (t[3].x > lLim.x && t[3].x < rLim.x)
+	{ 
 	
 		if (j == 0)
 		{
@@ -263,7 +275,7 @@ int rectangle::intersection_rectangle(const line & line, point &p1, point &p2)
 		j++;
 		m++;
 	}
-	
+
 	return m;	 
 }
 
@@ -280,6 +292,10 @@ private:
 public:
 	circle(point c, double r);
 	~circle();
+	
+	inline void print()
+	{cout<<"圆心坐标：";centre.print();cout<<"半径："<<R;}
+	
 	int intersection(line & l,point &p1, point &p2);
 };
 
@@ -347,12 +363,29 @@ circle::~circle()
 #endif // !ROBOCUB_SECOND_HOMEWORK
 int main()
 {
-	line l (1,1,-1);
-	point p1 (1,1);
-	point p (1,1);
-	point p2 (1,1);
-	circle c (p, 1.0);
-	cout << c.intersection(l,p1,p2);
-	p1.print();
-	p2.print();
+	/*
+	cout << "��" ;
+	l2.print();
+	cout << "�Ľ�������� " << intersection_line(l, l2, p1);
+	
+	//cout << "�������꣺";
+	//p1.print();
+	*/ 
+	
+	line l (1,1,-5);
+	point p (0,0);
+	circle c (p,1.414213);
+	//line l2 (0,1,0);	
+	//intersection_line(l,l2,p1);
+	point p1 (0,0);
+	point p2 (0,0);
+	//rectangle r (0,0,2,2);
+	//r.intersection_rectangle(l, p1, p2);
+	l.print();
+	cout << "��" ;
+	c.print();
+	cout << "�Ľ��������" << c.intersection(l,p1,p2); 
+	cout << "���� :";
+	//p1.print();
+	//p2.print();
 }
